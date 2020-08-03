@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using ProtoBuf;
 
 namespace QuantConnect.Data.Custom.Robintrack
 {
@@ -26,6 +27,7 @@ namespace QuantConnect.Data.Custom.Robintrack
     ///
     /// Data sourced from Robintrack - https://robintrack.net
     /// </summary>
+    [ProtoContract(SkipConstructor = true)]
     public class RobintrackHoldings : BaseData
     {
         private static List<Resolution> _supportedResolutions = new List<Resolution>
@@ -39,11 +41,13 @@ namespace QuantConnect.Data.Custom.Robintrack
         /// <summary>
         /// Number of unique users holding a given stock
         /// </summary>
+        [ProtoMember(11)]
         public int UsersHolding { get; set; }
 
         /// <summary>
         /// Total number of unique holdings across all stocks by users
         /// </summary>
+        [ProtoMember(12)]
         public decimal TotalUniqueHoldings { get; set; }
 
         /// <summary>
